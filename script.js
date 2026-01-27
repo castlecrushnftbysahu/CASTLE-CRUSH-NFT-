@@ -46,7 +46,7 @@ const defaultItems = [
 {name:"Black Knight",price:199,img:"black_knight.png"},
 {name:"Metamorph",price:199,img:"metamorph.png"},
 {name:"Skull King",price:199,img:"skull_king.png"},
-{name:"Jester",price:349,img:"jester.png"},
+{name:"Spectre",price:349,img:"spectre.png"},
 {name:"Reaper",price:149,img:"reaper.png"},
 {name:"Resurrection",price:149,img:"resurrection.png"},
 {name:"Shock",price:149,img:"shock.png"},
