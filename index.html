@@ -1,50 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Castle Crush NFT</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Castle Crush NFT</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>CASTLE CRUSH NFT</header>
+  <header>CASTLE CRUSH NFT</header>
 
-<div id="items" class="grid"></div>
+  <div id="items" class="grid"></div>
 
-<!-- QR MODAL -->
-<div id="qrModal" class="modal">
-  <div class="modal-box">
-    <p>Scan QR & Pay</p>
-    <img id="qrImg" src="images/qr.png">
-    <button onclick="downloadQR()">Download QR</button>
-    <button onclick="sendProof()">Payment Proof</button>
-    <button class="red" onclick="closeQR()">Close</button>
+  <div id="qrModal" class="modal">
+    <div class="modal-box">
+      <p>Scan QR & Pay</p>
+      <img id="qrImg" src="images/qr.png">
+      <button onclick="downloadQR()">Download QR</button>
+      <button onclick="sendProof()">Payment Proof</button>
+      <button class="red" onclick="closeQR()">Close</button>
+    </div>
   </div>
-</div>
 
-<!-- 🔥 FIREBASE CONFIG -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCyLuYOnT8mVSFK8bFrVDy8GEacWcLClZM",
-    authDomain: "castle-crush-nft-store.firebaseapp.com",
-    projectId: "castle-crush-nft-store",
-    storageBucket: "castle-crush-nft-store.firebasestorage.app",
-    messagingSenderId: "819499019001",
-    appId: "1:819499019001:web:8827c1941a288f32bfd028",
-    measurementId: "G-9CMZC5LW2D"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
-  console.log("🔥 Firebase connected successfully");
-</script>
-
-<!-- EXISTING JS -->
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
