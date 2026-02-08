@@ -1,3 +1,27 @@
+// ================= FIREBASE SETUP =================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  setDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCyLuYOnT8mVSFK8bFrVDy8GEacWcLClZM",
+  authDomain: "castle-crush-nft-store.firebaseapp.com",
+  projectId: "castle-crush-nft-store",
+  storageBucket: "castle-crush-nft-store.firebasestorage.app",
+  messagingSenderId: "819499019001",
+  appId: "1:819499019001:web:8827c1941a288f32bfd028"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ================= EXISTING CODE (SAFE) =================
+
 localStorage.removeItem("items");
 
 const defaultItems = [
@@ -61,12 +85,32 @@ const defaultItems = [
 {name:"Necromancer",price:1549,img:"necromancer.png"}
 ];
 
-localStorage.setItem("items",JSON.stringify(defaultItems));
-
-let items = JSON.parse(localStorage.getItem("items"));
+let items = [];
 let wa = localStorage.getItem("wa") || "917349908001";
 let selectedItem="";
 
+// ================= FIREBASE LOAD =================
+async function loadFromFirebase(){
+  const snap = await getDocs(collection(db,"cards"));
+  items = [];
+
+  snap.forEach(d=>{
+    items.push({
+      name:d.data().name,
+      price:d.data().price,
+      img:d.data().image
+    });
+  });
+
+  if(items.length === 0){
+    items = defaultItems;
+  }
+
+  renderUser();
+  renderAdmin();
+}
+
+// ================= USER FUNCTIONS (UNCHANGED) =================
 function renderUser(){
 const box=document.getElementById("items");
 if(!box) return;
@@ -102,6 +146,7 @@ a.download="qr.png";
 a.click();
 }
 
+// ================= ADMIN FUNCTIONS (SYNCED) =================
 function renderAdmin(){
 const box=document.getElementById("adminItems");
 if(!box) return;
@@ -117,10 +162,16 @@ box.innerHTML+=`
 });
 }
 
-function saveItems(){
-localStorage.setItem("items",JSON.stringify(items));
-alert("Saved");
-renderUser();
+async function saveItems(){
+  for(let i of items){
+    await setDoc(doc(collection(db,"cards")),{
+      name:i.name,
+      price:Number(i.price),
+      image:i.img
+    });
+  }
+  alert("Saved to Firebase ✅");
+  loadFromFirebase();
 }
 
 function saveWA(){
@@ -129,5 +180,5 @@ localStorage.setItem("wa",wa);
 alert("WhatsApp Saved");
 }
 
-renderUser();
-renderAdmin();
+// ================= INIT =================
+loadFromFirebase();
