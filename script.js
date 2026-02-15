@@ -51,7 +51,7 @@ const defaultItems = [
 {name:"Resurrection",price:149,img:"resurrection.png"},
 {name:"Shock",price:149,img:"shock.png"},
 {name:"Standard Bearer",price:119,img:"standard_bearer.png"},
-{name:"Unchained Demon",price:129,img:"unchained_demon.png"},
+{name:"Unchained Demon",price:4000,img:"unchained_demon.png"},
 {name:"Wraith",price:119,img:"wraith.png"},
 {name:"Dragon",price:3500,img:"dragon.png"},
 {name:"Storm Elemental",price:1549,img:"storm_elemental.png"},
